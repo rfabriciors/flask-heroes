@@ -10,7 +10,7 @@ def index():
     return data.json()
 
 @app.route("/usuarios", methods=["GET"])
-def index():
+def usuarios():
     data = requests.get('https://randomapi.com/api/6de6abfedb24f889e0b5f675edc50deb')
     return data.json()
 
