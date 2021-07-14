@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskapi-deployment
+  namespace: flask-heroes
+  labels:
+    app: flaskapi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flaskapi
+  template:
+    metadata:
+      labels:
+        app: flaskapi
+    spec:
+      containers:
+      - name: flaskapi
+        image: rfabricio/flask-heroes:latest
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-service
+  namespace: flask-heroes
+spec:
+  selector:
+    app: flaskapi
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+  type: LoadBalancer
