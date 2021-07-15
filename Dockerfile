@@ -7,7 +7,7 @@ RUN apt-get clean && \
     apt-get autoclean && \
     apt-get clean
 WORKDIR /app
-RUN pip install Flask requests flask_mysqldb
+RUN pip install Flask requests flask_mysqldb flask-cors
 COPY app_heroes.py .
 EXPOSE 5000
 CMD ["python", "./app_heroes.py"]

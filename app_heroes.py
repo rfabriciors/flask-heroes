@@ -1,8 +1,10 @@
 import flask
 from flask import request, json, jsonify
+from flask_cors import CORS
 import requests
 
 app = flask.Flask(__name__)
+CORS(app)
 
 @app.route("/api", methods=["GET"])
 def index():
